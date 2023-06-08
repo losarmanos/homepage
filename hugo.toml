@@ -1,3 +1,4 @@
 baseURL = '/'
 languageCode = 'es-mx'
 title = 'Los armaños'
+theme = "beautifulhugo"
