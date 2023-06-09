@@ -1,0 +1,9 @@
+siteName: My awesome Site
+author:
+  name: Zero
+  site: zerothedragon.com
+params:
+  markups:
+    - index
+  styles:
+    - styles
