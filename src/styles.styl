@@ -7,7 +7,7 @@ palDanger = #D57A66
 palContrast = #fafafa
 palBackground = #011627
 
-body
+:root
   --primary: palPrimary
   --darkPri: darken(palPrimary, 10)
   --lightPri: lighten(palPrimary, 10)
@@ -27,6 +27,8 @@ body
   --darkBac: darken(palBackground, 10)
   --lightBac: lighten(palBackground, 10)
 
+body
+
   background-color: var(--background)
   color: var(--contrast)
   font-family: 'Roboto', sans-serif
@@ -36,11 +38,13 @@ body
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-size 18px
 
 h1, h2, h3
   font-family: 'Tilt Prism', cursive
   margin: 0
   padding: 0
+  letter-spacing: 1px
 
 h1
   font-size: 60px
