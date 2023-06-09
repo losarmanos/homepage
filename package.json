@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "nodemon ./src/builder.mjs",
-    "serve": "npx live-server --mount=/:./public --ignore=node_modules"
+    "serve": "npx live-server ./public",
+    "build": "node ./src/builder.mjs"
   },
   "devDependencies": {
     "consolecolors": "^0.33.2-b",

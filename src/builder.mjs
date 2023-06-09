@@ -30,6 +30,10 @@ const images = rd(resolve(__dirname, 'images'))
 images.forEach(image => {
   cf(resolve(__dirname, 'images', image), resolve(publicDir, 'images', image))
 })
+const favicon = rd(resolve(__dirname, 'favicon'))
+favicon.forEach(item => {
+  cf(resolve(__dirname, 'favicon', item), resolve(publicDir, item))
+})
 
 console.log('- Building Markup files'.magenta)
 markups.forEach(item => {

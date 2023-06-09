@@ -1,9 +1,11 @@
-palPrimary = #5AB1BB
-palSuccess = #A5C882
-palWarning = #F7DD72
-palDanger = #E2856E
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Tilt+Prism&display=swap')
+
+palPrimary = #30638E
+palSuccess = #63A375
+palWarning = #EDC79B
+palDanger = #D57A66
 palContrast = #fafafa
-palBackground = #2F2D2E
+palBackground = #011627
 
 body
   --primary: palPrimary
@@ -27,9 +29,32 @@ body
 
   background-color: var(--background)
   color: var(--contrast)
-  font-family: sans-serif
+  font-family: 'Roboto', sans-serif
   margin: 0
   padding: 0
   box-sizing: border-box
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+h1, h2, h3
+  font-family: 'Tilt Prism', cursive
+  margin: 0
+  padding: 0
+
+h1
+  font-size: 60px
+h2
+  font-size: 30px
+  color: var(--warning)
+  border-bottom: 1px dashed var(--danger)
+
+a
+  color: var(--success)
+
+.primary
+  color: var(--primary)
 
 @import "header.styl"
+@import "content.styl"
+@import "footer.styl"
