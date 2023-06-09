@@ -20,9 +20,10 @@ const defaultParams = yaml.load(rf(resolve(templateDir, 'site.yml')))
 const newParams = yaml.load(rf(resolve(__dirname, '../site.yml')))
 
 const definitions = Object.assign(defaultParams, newParams)
-const { markups, styles } = definitions.params
+const { params: { markups, styles }, cname } = definitions
 const siteParams = JSON.parse(JSON.stringify(definitions))
 delete siteParams.params
+delete siteParams.cname
 
 rm(publicDir, { recursive: true, force: true })
 mk(resolve(publicDir))
@@ -62,3 +63,6 @@ styles.forEach(async item => {
   })
   wf(resolve(publicDir, `${item}.css`), css)
 })
+
+console.log('- Creating CNAME file'.magenta)
+wf(resolve(publicDir, 'CNAME'), cname)
