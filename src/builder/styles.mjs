@@ -6,11 +6,9 @@ import { resolve } from 'path'
 import stylus from 'stylus'
 import yaml from 'js-yaml'
 
-export const execute = (root, publicDir, templateDir) => {
+export const execute = (publicDir, templateDir) => {
   console.log('- Building Style files'.magenta)
-  const defaultParams = yaml.load(rf(resolve(templateDir, 'site.yml')))
-  const newParams = yaml.load(rf(resolve(root, '../site.yml')))
-  const definitions = Object.assign(defaultParams, newParams)
+  const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
   const { styles } = definitions.params
   const partials = resolve(templateDir, 'partials/')
   styles.forEach(async item => {

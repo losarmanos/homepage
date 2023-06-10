@@ -2,14 +2,15 @@ import {
   writeFileSync as wf,
   readFileSync as rf,
   readdirSync as rd,
-  mkdirSync as mk
+  mkdirSync as mk,
+  existsSync as ex,
+  rmSync as rm
 } from 'fs'
 import { resolve, extname, basename } from 'path'
 import yaml from 'js-yaml'
 import { marked } from 'marked'
 import pug from 'pug'
 
-console.log('- Loading dynamic data'.magenta)
 const getDate = input => {
   if (!input?.meta) return {}
   const date = input.meta.date.toString()
@@ -34,7 +35,7 @@ const getDynamic = dir => {
       })
       .map(({ markdown, file, meta }) => ({
         html: marked.parse(markdown, { mangle: false, headerIds: false }),
-        path: basename(file, '.md'),
+        path: basename(file, '.md').replace(/\s/g, '-'),
         meta
       }))
   } catch (e) {
@@ -43,9 +44,9 @@ const getDynamic = dir => {
 }
 
 export const execute = (root, publicDir, templateDir) => {
-  const defaultParams = yaml.load(rf(resolve(templateDir, 'site.yml')))
-  const newParams = yaml.load(rf(resolve(root, '../site.yml')))
-  const definitions = Object.assign(defaultParams, newParams)
+  console.log('- Loading dynamic data'.magenta)
+  rm(resolve(publicDir, 'posts'), { recursive: true, force: true })
+  const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
   const siteParams = JSON.parse(JSON.stringify(definitions))
   delete siteParams.params
   delete siteParams.cname
@@ -57,7 +58,9 @@ export const execute = (root, publicDir, templateDir) => {
       if (a.meta.date < b.meta.date) return 1
       return 0
     })
-  if (posts.length > 0) mk(resolve(publicDir, 'posts'))
+  if (posts.length > 0 && !ex(resolve(publicDir, 'posts'))) {
+    mk(resolve(publicDir, 'posts'))
+  }
 
   pages
     .map(({ html, path }) => {
@@ -75,7 +78,7 @@ export const execute = (root, publicDir, templateDir) => {
         pretty: true,
         ...Object.assign(siteParams, { pageData: html })
       })
-      mk(resolve(publicDir, path))
+      if (!ex(resolve(publicDir, path))) mk(resolve(publicDir, path))
       wf(resolve(publicDir, `${path}/index.html`), template)
     })
 
@@ -89,14 +92,17 @@ export const execute = (root, publicDir, templateDir) => {
         next: { ...next.meta, path: next.path }
       }
     })
-    .forEach(({ html, path, prev, next }) => {
+    .forEach(({ html, path, meta, prev, next }) => {
       const template = pug.renderFile(resolve(templateDir, 'post.pug'), {
         pretty: true,
-        ...Object.assign(siteParams, { pageData: html }),
+        ...Object.assign(siteParams, {
+          pageData: html,
+          siteName: `${meta.title} - ${siteParams.siteName}`
+        }),
         prev,
         next
       })
-      mk(resolve(publicDir, 'posts', path))
+      if (!ex(resolve(publicDir, 'posts', path))) mk(resolve(publicDir, 'posts', path))
       wf(resolve(publicDir, `posts/${path}/index.html`), template)
     })
 }

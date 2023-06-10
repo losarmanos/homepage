@@ -6,11 +6,9 @@ import { resolve } from 'path'
 import yaml from 'js-yaml'
 import pug from 'pug'
 
-export const execute = (root, publicDir, templateDir) => {
-  const defaultParams = yaml.load(rf(resolve(templateDir, 'site.yml')))
-  const newParams = yaml.load(rf(resolve(root, '../site.yml')))
-  const definitions = Object.assign(defaultParams, newParams)
-  const { params: { markups }, cname } = definitions
+export const execute = (publicDir, templateDir) => {
+  const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
+  const { markups } = definitions.params
   const siteParams = JSON.parse(JSON.stringify(definitions))
   delete siteParams.params
   delete siteParams.cname
@@ -22,7 +20,4 @@ export const execute = (root, publicDir, templateDir) => {
     })
     wf(resolve(publicDir, `${item}.html`), template)
   })
-
-  console.log('- Creating CNAME file'.magenta)
-  wf(resolve(publicDir, 'CNAME'), cname)
 }
