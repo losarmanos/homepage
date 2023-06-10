@@ -6,12 +6,12 @@ import { resolve } from 'path'
 import stylus from 'stylus'
 import yaml from 'js-yaml'
 
-export const execute = (publicDir, templateDir) => {
+export const execute = async (publicDir, templateDir) => {
   console.log('- Building Style files'.magenta)
   const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
   const { styles } = definitions.params
   const partials = resolve(templateDir, 'partials/')
-  styles.forEach(async item => {
+  await styles.forEach(async item => {
     const source = resolve(templateDir, `${item}.styl`)
     const css = await new Promise((resolve, reject) => {
       const string = rf(source, 'utf8')
@@ -22,6 +22,6 @@ export const execute = (publicDir, templateDir) => {
           resolve(rendered)
         })
     })
-    wf(resolve(publicDir, `${item}.css`), css)
+    return wf(resolve(publicDir, `${item}.css`), css)
   })
 }

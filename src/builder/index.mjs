@@ -22,17 +22,17 @@ const contentDir = resolve(root, 'content/')
 const [, , once] = process.argv
 const isBuilding = once === 'once'
 
-const buildAll = _ => {
+const buildAll = async _ => {
   rm(publicDir, { recursive: true, force: true })
   mk(resolve(publicDir))
   imageExec(publicDir, templateDir)
   markupExec(publicDir, templateDir)
-  stylExec(publicDir, templateDir)
+  await stylExec(publicDir, templateDir)
   dynamicExec(root, publicDir, templateDir)
   cnameExec(publicDir, templateDir)
 }
 
-buildAll()
+await buildAll()
 if (isBuilding) process.exit(0)
 
 const watcher = chokidar.watch(
