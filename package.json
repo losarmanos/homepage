@@ -13,10 +13,11 @@
     "eslint-plugin-promise": "^6.1.1",
     "js-yaml": "^4.1.0",
     "live-server": "^1.1.0",
+    "marked": "^5.0.5",
     "pug": "^3.0.2",
     "stylus": "^0.59.0"
   },
   "nodemonConfig": {
-    "ext": "mjs,pug,styl,yml"
+    "ext": "mjs,pug,styl,yml,md"
   }
 }
