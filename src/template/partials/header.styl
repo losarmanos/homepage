@@ -3,7 +3,26 @@ header
   min-height: 400px
   background-size: cover
   border-bottom: 1px solid var(--primary)
-  img
-    max-width: 50px
-    opacity: 0.5
-    margin: 10px
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  .navigation
+    margin: 0
+    padding: 0
+    list-style: none
+    display: flex
+    align-items: flex-end
+    justify-content: flex-end
+    li
+      background-color: var(--background)
+      border-top-left-radius: 8px
+      border-top-right-radius: 8px
+      margin-right: 10px
+      display: inline-block
+    a
+      display: inline-block
+      padding: 10px 20px 0 20px
+      text-decoration: none
+      transition: padding 100ms linear
+      &:hover
+        padding-bottom: 10px

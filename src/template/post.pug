@@ -4,11 +4,13 @@ body
   include partials/header.pug
   content
     |!{pageData}
+    
     .navigator
       if next.path
         a(href=`/posts/${next.path}`) &laquo; #{next.title}
       else
         span
+
       if prev.path
         a(href=`/posts/${prev.path}`) #{prev.title} &raquo;
       else

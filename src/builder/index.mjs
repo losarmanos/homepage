@@ -9,7 +9,6 @@ import chokidar from 'chokidar'
 import liveServer from 'live-server'
 
 import { execute as imageExec } from './images.mjs'
-import { execute as markupExec } from './markup.mjs'
 import { execute as stylExec } from './styles.mjs'
 import { execute as dynamicExec } from './dynamic.mjs'
 import { execute as cnameExec } from './cname.mjs'
@@ -26,7 +25,6 @@ const buildAll = async _ => {
   rm(publicDir, { recursive: true, force: true })
   mk(resolve(publicDir))
   imageExec(publicDir, templateDir)
-  markupExec(publicDir, templateDir)
   await stylExec(publicDir, templateDir)
   dynamicExec(root, publicDir, templateDir)
   cnameExec(publicDir, templateDir)
@@ -50,9 +48,6 @@ watcher
   .on('raw', (_event, path) => {
     const fileType = extname(path)
     switch (fileType) {
-      case '.pug':
-        markupExec(publicDir, templateDir)
-        break
       case '.styl':
         console.log('- Change in styles detected'.green)
         stylExec(publicDir, templateDir)
@@ -62,6 +57,7 @@ watcher
         buildAll()
         break
       case '.md':
+      case '.pug':
         console.log('- Change in Blog files'.green)
         dynamicExec(root, publicDir, templateDir)
         break
