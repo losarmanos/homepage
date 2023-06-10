@@ -11,6 +11,13 @@ import yaml from 'js-yaml'
 import { marked } from 'marked'
 import pug from 'pug'
 
+const renderer = new marked.Renderer()
+renderer.link = function () {
+  const link = marked.Renderer.prototype.link.apply(this, arguments)
+  return link.replace('<a', '<a target="_blank"')
+}
+marked.setOptions({ renderer })
+
 const getDate = input => {
   if (!input?.meta) return {}
   const date = input.meta.date.toString()
@@ -48,6 +55,7 @@ export const execute = (root, publicDir, templateDir) => {
   rm(resolve(publicDir, 'posts'), { recursive: true, force: true })
   const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
   const siteParams = JSON.parse(JSON.stringify(definitions))
+  const websiteParams = siteParams.params
   delete siteParams.params
   delete siteParams.cname
 
@@ -69,7 +77,10 @@ export const execute = (root, publicDir, templateDir) => {
         posts
       })
       return {
-        html: html.replace('<p>!{blogList}</p>', list),
+        html: html
+          .replace('<p>!{blogList}</p>', list)
+          .replace('!{siteName}', siteParams.siteName)
+          .replace('!{siteDesc}', siteParams.siteDesc),
         path
       }
     })
@@ -78,6 +89,7 @@ export const execute = (root, publicDir, templateDir) => {
         pretty: true,
         ...Object.assign(siteParams, { pageData: html })
       })
+      if (websiteParams.main === path) return wf(resolve(publicDir, 'index.html'), template)
       if (!ex(resolve(publicDir, path))) mk(resolve(publicDir, path))
       wf(resolve(publicDir, `${path}/index.html`), template)
     })

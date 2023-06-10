@@ -1,10 +1,12 @@
 siteName: Los Armaños
-cname: losarmanos.com
+siteDesc: Los armaños somos un motoclub familiar con capítulos en Jalisco y Querétaro. Nos gusta salir a rodar con quien sea y cuando sea. Si nos ves en el camino, salúdanos.
 author:
   name: Zero
   site: zerothedragon.com
+# pages:
+#   Inicio: /
+#   Noticias: /blog
+cname: losarmanos.com
 params:
-  markups:
-    - index
-  styles:
-    - styles
+  main: homepage
+  styles: styles

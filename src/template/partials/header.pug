@@ -1,3 +1,6 @@
 header
-  a(href="/")
-    img(src="/images/logohd.png")
+  if pages
+    ul.navigation
+      for uri, page in pages
+        li
+          a(href=`${uri}`) #{page}
