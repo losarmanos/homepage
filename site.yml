@@ -3,10 +3,8 @@ siteDesc: Los armaños somos un motoclub familiar con capítulos en Jalisco y Qu
 author:
   name: Zero
   site: zerothedragon.com
+siteUrl: https://losarmanos.com
+cname: losarmanos.com
 # pages:
 #   Inicio: /
 #   Noticias: /blog
-cname: losarmanos.com
-params:
-  main: homepage
-  styles: styles
