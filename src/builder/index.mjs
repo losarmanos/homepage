@@ -14,10 +14,11 @@ import { execute as dynamicExec } from './dynamic.mjs'
 import { execute as cnameExec } from './cname.mjs'
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
-const root = resolve(__dirname, '../')
-const publicDir = resolve(root, '../public/')
-const templateDir = resolve(root, 'template/')
-const contentDir = resolve(root, 'content/')
+const root = resolve(__dirname, '../../')
+const src = resolve(__dirname, '../')
+const publicDir = resolve(src, '../public/')
+const templateDir = resolve(src, 'template/')
+const contentDir = resolve(src, 'content/')
 const [, , once] = process.argv
 const isBuilding = once === 'once'
 
@@ -26,8 +27,8 @@ const buildAll = async _ => {
   mk(resolve(publicDir))
   imageExec(publicDir, templateDir)
   await stylExec(publicDir, templateDir)
-  dynamicExec(root, publicDir, templateDir)
-  cnameExec(publicDir, templateDir)
+  dynamicExec(root, src, publicDir, templateDir)
+  cnameExec(root, publicDir)
 }
 
 await buildAll()
@@ -59,7 +60,7 @@ watcher
       case '.md':
       case '.pug':
         console.log('- Change in Blog files'.green)
-        dynamicExec(root, publicDir, templateDir)
+        dynamicExec(src, publicDir, templateDir)
         break
       case '':
         console.log(_event, path)

@@ -50,17 +50,14 @@ const getDynamic = dir => {
   }
 }
 
-export const execute = (root, publicDir, templateDir) => {
+export const execute = (root, src, publicDir, templateDir) => {
   console.log('- Loading dynamic data'.magenta)
   rm(resolve(publicDir, 'posts'), { recursive: true, force: true })
-  const definitions = yaml.load(rf(resolve(templateDir, 'site.yml')))
+  const definitions = yaml.load(rf(resolve(root, 'site.yml')))
   const siteParams = JSON.parse(JSON.stringify(definitions))
-  const websiteParams = siteParams.params
-  delete siteParams.params
-  delete siteParams.cname
 
-  const pages = getDynamic(resolve(root, 'content'))
-  const posts = getDynamic(resolve(root, 'content', 'posts'))
+  const pages = getDynamic(resolve(src, 'content'))
+  const posts = getDynamic(resolve(src, 'content', 'posts'))
     .sort((a, b) => {
       if (a.meta.date > b.meta.date) return -1
       if (a.meta.date < b.meta.date) return 1
@@ -89,7 +86,7 @@ export const execute = (root, publicDir, templateDir) => {
         pretty: true,
         ...Object.assign(siteParams, { pageData: html })
       })
-      if (websiteParams.main === path) return wf(resolve(publicDir, 'index.html'), template)
+      if (path === 'homepage') return wf(resolve(publicDir, 'index.html'), template)
       if (!ex(resolve(publicDir, path))) mk(resolve(publicDir, path))
       wf(resolve(publicDir, `${path}/index.html`), template)
     })
