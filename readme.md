@@ -5,7 +5,15 @@ Los Armaños webpage
 
 Creado con amor por Zero
 
-- npm run dev
-- npm run build
+instalar con
+- npm i
 
-hackear
+para buildear:
+- npm run build 
+o
+- npm sitecraft build
+
+para editar el contenido:
+- npx sitecraft serve
+
+hackear a gusto
