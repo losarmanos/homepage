@@ -1,20 +1,13 @@
 {
+  "name": "losarmanos",
+  "version": "1.0.0",
+  "description": "Los Armaños webpage",
   "scripts": {
-    "dev": "nodemon ./src/builder/index.mjs",
-    "build": "node ./src/builder/index.mjs once"
+    "build": "sitecraft build"
   },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "chokidar": "^3.4.3",
-    "consolecolors": "^0.33.2-b",
-    "eslint": "^8.42.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^16.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "js-yaml": "^4.1.0",
-    "live-server": "^1.1.0",
-    "marked": "^5.0.5",
-    "pug": "^3.0.2",
-    "stylus": "^0.59.0"
+    "sitecraft": "^1.0.2"
   }
 }
