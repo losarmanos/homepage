@@ -5,6 +5,5 @@ author:
   site: zerothedragon.com
 siteUrl: https://losarmanos.com
 cname: losarmanos.com
-# pages:
-#   Inicio: /
-#   Noticias: /blog
+pages:
+  Inicio: /
