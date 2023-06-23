@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <title>Los Armaños</title>
+  <subtitle>Los armaños somos un motoclub familiar con capítulos en Jalisco y Querétaro. Nos gusta salir a rodar con quien sea y cuando sea. Si nos ves en el camino, salúdanos.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href=""/>
+  <updated></updated>
+  <id></id>
+  <author>
+    <name>Zero</name>
+    <uri>zerothedragon.com</uri>
+  </author>
+</feed>
