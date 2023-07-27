@@ -18,7 +18,7 @@ Nos gusta grabar nuestas rodadas y las publicamos en varios lugares, también si
 
 <div class="socialNetworks" markdown="1">
 
-  - [<i class="fa-brands fa-facebook"></i>Facebook](https://www.facebook.com/groups/armanos)
+  - [<i class="fa-brands fa-facebook"></i>Facebook]([https://www.facebook.com/groups/armanos](https://www.facebook.com/LosArmanosMx?mibextid=LQQJ4d))
   - [<i class="fa-brands fa-youtube"></i>Youtube](https://www.youtube.com/@losarmanos)
   - [<i class="fa-brands fa-instagram"></i>Instagram](https://www.instagram.com/los_armanos/)
 
