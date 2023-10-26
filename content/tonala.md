@@ -2,7 +2,7 @@
 
 <div class="head" markdown="1">
 
-  # !{siteName} Querétaro
+  # !{siteName} Tonalá
 </div>
 
 ## Próximas rodadas
