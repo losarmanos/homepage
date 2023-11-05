@@ -49,8 +49,10 @@ Esta sección es para mostrar información importante del miembro o prepu para u
 </div>
 <script>
   const [, uid] = document.location.search.split('=')
+  // const api = 'http://localhost:8081/members/'
+  const api = 'https:api.losarmanos.com/members/'
   if (uid) {
-    fetch(`http://localhost:8081/members/${uid}`).then(response => response.text())
+    fetch(`${api}${uid}`).then(response => response.text())
       .then(data => {
         if (!data) return
         document.getElementById('miembro').style.display = 'flex'
@@ -90,7 +92,7 @@ Esta sección es para mostrar información importante del miembro o prepu para u
         return
       }
       document.getElementById('form').innerHTML = '<br/>Gracias por tu notificación, intentaremos localizar a su contacto de emergencia. Es posible que intentemos contactarnos contigo.'
-      fetch(`http://localhost:8081/members/${uid}`, {
+      fetch(`${api}${uid}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
