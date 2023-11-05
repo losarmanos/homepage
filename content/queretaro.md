@@ -98,7 +98,8 @@
     const second = parseInt(timestamp.slice(13, 15))
     return new Date(Date.UTC(year, month, day, hour, minute, second)).getTime()
   }
-  fetch('https://calendario.losarmanos.com/queretaro').then(response => response.text())
+  fetch('https://api.losarmanos.com/calendar/queretaro').then(response => response.text())
+  // fetch('http://localhost:8081/calendar/queretaro').then(response => response.text())
   .then(data => {
     const rodadas = JSON.parse(data)
     if (rodadas.length === 0) return
