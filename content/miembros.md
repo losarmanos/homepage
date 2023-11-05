@@ -50,7 +50,7 @@ Esta sección es para mostrar información importante del miembro o prepu para u
 <script>
   const [, uid] = document.location.search.split('=')
   // const api = 'http://localhost:8081/members/'
-  const api = 'https:api.losarmanos.com/members/'
+  const api = 'https://api.losarmanos.com/members/'
   if (uid) {
     fetch(`${api}${uid}`).then(response => response.text())
       .then(data => {
