@@ -11,8 +11,8 @@ Esta sección es para mostrar información importante del miembro o prepu para u
   .miembro .row {margin-top: 10px}
   .miembro .input {width: 100%; padding: 6px; border: none; margin-bottom: 2px}
   .miembro textarea {height: 100px; resize: none;}
-  .miembro .submit {background-color: var(--danger)}
-  .miembro .submit:hover {background-color: var(--darkDan)}
+  .miembro .submit {background-color: var(--primary); color: var(--contrast)}
+  .miembro .submit:hover {background-color: var(--darkPri)}
   .miembro .pictureHolder {text-align: center;}
   @media screen and (max-width: 699px) {
     .miembro {flex-direction: column;}
@@ -38,6 +38,8 @@ Esta sección es para mostrar información importante del miembro o prepu para u
     <span class="field">Seguro(s)</span>
     <span class="insurance"></span><br/>
     <div id="form">
+      <br/>
+      Por favor, ingresa tus datos para contactarte y solicitar más información
       <div class="row">
         <input class="input" type="text" id="contactName" placeholder="Tu nombre"/>
         <input class="input" type="text" id="contactPhone" placeholder="Tu teléfono"/>
