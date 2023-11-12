@@ -1,7 +1,7 @@
 
 
 ## Miembros
-Esta sección es para mostrar información importante del miembro o prepu para usarse en caso de emergencia. Si hace falta contactar a alguien. Solo presiona el botón de emergencia y manda tu ubicación de GPS
+Has llegado a la página de alertas de Los Armaños. Si la persona descrita a continuación tuvo algún incidente, por favor, ingresa tus datos para contactarte y solicitar más información. Es de mucha ayuda que nos proporciones tu ubiación.
 <style>
   .miembro {display: none;}
   .miembro .row {display: flex}
@@ -22,13 +22,11 @@ Esta sección es para mostrar información importante del miembro o prepu para u
 <div class="preview">Cargando información...</div>
 <div class="miembro" id="miembro">
   <div class="pictureHolder">
-    <img src="" class="picture" />
+    <img src="/images/header.jpg" class="picture" />
   </div>
   <div class="right">
     <span class="field">Nombre</span>
     <span class="name"></span><br/>
-    <span class="field">Fecha de nacimiento</span>
-    <span class="dob"></span><br/>
     <span class="field">Enfermedades o alergias</span>
     <span class="medicConditions"></span><br/>
     <span class="field">Tipo de sangre</span>
@@ -39,7 +37,6 @@ Esta sección es para mostrar información importante del miembro o prepu para u
     <span class="insurance"></span><br/>
     <div id="form">
       <br/>
-      Por favor, ingresa tus datos para contactarte y solicitar más información
       <div class="row">
         <input class="input" type="text" id="contactName" placeholder="Tu nombre"/>
         <input class="input" type="text" id="contactPhone" placeholder="Tu teléfono"/>
@@ -51,8 +48,8 @@ Esta sección es para mostrar información importante del miembro o prepu para u
 </div>
 <script>
   const [, uid] = document.location.search.split('=')
-  // const api = 'http://localhost:8081/members/'
-  const api = 'https://api.losarmanos.com/members/'
+  const api = 'http://localhost:8081/members/'
+  // const api = 'https://api.losarmanos.com/members/'
   if (uid) {
     fetch(`${api}${uid}`).then(response => response.text())
       .then(data => {
@@ -64,7 +61,7 @@ Esta sección es para mostrar información importante del miembro o prepu para u
         Object.entries(info).forEach(([key, value]) => {
           if (holder.querySelector(`.${key}`)) holder.querySelector(`.${key}`).innerText = value
         })
-        holder.querySelector('.picture').src = info.picture
+        if (info.picture) holder.querySelector('.picture').src = info.picture
       })
       .catch(e => {
         console.error(e)
