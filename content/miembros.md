@@ -48,8 +48,8 @@ Has llegado a la página de alertas de Los Armaños. Si la persona descrita a co
 </div>
 <script>
   const [, uid] = document.location.search.split('=')
-  const api = 'http://localhost:8081/members/'
-  // const api = 'https://api.losarmanos.com/members/'
+  // const api = 'http://localhost:8081/members/'
+  const api = 'https://api.losarmanos.com/members/'
   if (uid) {
     fetch(`${api}${uid}`).then(response => response.text())
       .then(data => {
