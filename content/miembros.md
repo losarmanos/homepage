@@ -1,7 +1,7 @@
 
 
 ## Miembros
-Has llegado a la página de alertas de Los Armaños. Si la persona descrita a continuación tuvo algún incidente, por favor, ingresa tus datos para contactarte y solicitar más información. Es de mucha ayuda que nos proporciones tu ubiación.
+Has llegado a la página de alertas de Los Armaños. Si la persona descrita a continuación tuvo algún incidente, por favor, ingresa tus datos para contactarte y solicitar más información. Es de mucha ayuda que nos proporciones tu ubicación.
 <style>
   .miembro {display: none;}
   .miembro .row {display: flex}
